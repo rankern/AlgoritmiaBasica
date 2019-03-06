@@ -1,6 +1,10 @@
-#include "heap.hpp"
 #include <stdlib.h>
-#include <string.h>
+#include <stdio.h>
+#include <string>
+
+#include "heap.hpp"
+
+using namespace std;
 
 enum{NUM_SIMBOLOS = 256};
 
@@ -33,16 +37,17 @@ int descomprimir(){
 
 
 int main(int argc, char ** argv){
-    bool comprimir = false;
-    if (argc < 4){
+    bool paramComprimir = false;
+    if (argc < 3){
         printf("USO: huffer [-c | -d] <fichero>\n");
         return 1;
     }
-
-    if (argv[1]){
+    string param1(argv[1]);
+    string param2(argv[2]);
+    if (param1 == "-c"){
         //aragv == -c
-        comprimir = true;
-    }else if(argv[1]){
+        paramComprimir = true;
+    }else if(param2 == "-d"){
         //aragv == -d
     }else{
         //error en paraemtro
@@ -52,7 +57,7 @@ int main(int argc, char ** argv){
     //inicializar vector frecuencias
     //Abrir fichero
     //verificar fichero correctamente abierto
-    if(comprimir){
+    if(paramComprimir){
         return comprimir();
     }else{
         return descomprimir();
