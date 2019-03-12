@@ -1,6 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string>
+#include <fstream>
 
 #include "heap.hpp"
 #include "trie.hpp"
@@ -11,23 +12,40 @@ using namespace std;
 enum{NUM_SIMBOLOS = 256};
 
 
-int comprimir(){
+int comprimir(const char nombreFichero[]){
+    ifstream f;
+    Heap mont();
+    char byteLeido;
+    int posicion;
     int frecuencias[NUM_SIMBOLOS];
     for (int i = 0; i< NUM_SIMBOLOS; i++){
         frecuencias[i] = 0;
     }
 
     //lectura fichero
-    
-    //generar monticulo
-    Trie<int> t(1);
-    Trie<int> t_2(2);
-    Trie<int> t3(&t, &t_2);
-    
-    for(Trie<int> t : t3){
-        ;
+
+    f.open(nombreFichero,ios::binary);
+    if(f.is_open()){
+        while(!f.eof()){
+            fread(byteLeido,1);
+            posicion=byteLeido+'0';
+            frecuencias[posicion]++;
+        }
+    f.close()
     }
-    //generar trie
+    //generar monticulo
+
+    int it=0;
+    while(it<NUM_SIMBOLOS){
+        if(frecuencias[it]>0){
+            mont.add(frecuencias[it]);
+        }
+        cout>>frecuencias[it];
+        it++;
+    }
+
+
+  //generar trie
 
     //generar vector equivalencias
 
