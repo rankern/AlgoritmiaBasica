@@ -3,6 +3,8 @@
 #include <string>
 
 #include "heap.hpp"
+#include "trie.hpp"
+
 
 using namespace std;
 
@@ -18,7 +20,13 @@ int comprimir(){
     //lectura fichero
     
     //generar monticulo
+    Trie<int> t(1);
+    Trie<int> t_2(2);
+    Trie<int> t3(&t, &t_2);
     
+    for(Trie<int> t : t3){
+        ;
+    }
     //generar trie
 
     //generar vector equivalencias
