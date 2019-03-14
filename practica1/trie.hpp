@@ -9,94 +9,119 @@
 #pragma once
 
 #include "pila.hpp"
-
+#include <stack>
+using namespace std;
 template <typename T>
 class Trie{
 	private:
 		Trie * izq = nullptr;
 		Trie * dch = nullptr;
 		T elemento;
+		int frecuencia = 0;
 	
 	public:
 		Trie<T>(){}
 		Trie<T>(T t) : elemento (t) { }
-		Trie<T>(Trie * _izq, Trie * _dch) : izq(_izq), dch (_dch){ }
+		Trie<T>(T t, int _frec) : elemento (t), frecuencia(_frec) { }
+		Trie<T>(Trie * _izq, Trie * _dch) : izq(_izq), dch (_dch){
+			this->frecuencia = _izq->getFrecuencia() + _dch->getFrecuencia();
+		 }
 		Trie<T>(Trie * _izq) : izq(_izq){ }
-		Trie getIzq(){
-			return this.izq;
+		
+		Trie<T> * getIzq(){
+			return this->izq;
 		}
-		Trie getDch(){
-			return this.dch;
+		Trie<T> * getDch(){
+			return this->dch;
 		}
 
 		T getElement(){
-			return this.elemento;
+			return this->elemento;
 		}
+
+		const int getFrecuencia() const{
+			return this->frecuencia;
+		}
+
+		const bool operator >=(const Trie& t) const{
+			return this->frecuencia >= t.getFrecuencia();
+		}
+
+		const bool operator <=(const Trie& t) const{
+			return this->frecuencia <= t.getFrecuencia();
+		}
+		const bool operator >(const Trie& t) const{
+			return this->frecuencia > t.getFrecuencia();
+		}
+
+		const bool operator <(const Trie& t) const {
+			return this->frecuencia < t.getFrecuencia();
+		}
+
+		const bool operator ==(const Trie& t) const{
+			return this->frecuencia == t.getFrecuencia();
+		}
+
+		const string operator<<(Trie t) const{
+			return t->getElement;
+		}
+
 
 		friend class const_iterator;
 	   
+		
 		class const_iterator {
 		private:
-			class Nodo{
-				Trie<T>& item;
-				Nodo & next;
-				public:
-					Nodo(Trie<T>& t, Nodo& _next) : item(t), next(_next){}
-
-					Nodo * getNext(){
-						return &next;
-					}
-					~Nodo(){
-						
-					}
-					Trie<T>& getItem(){
-						return item;
-					}
-
-					Nodo apilar(Trie<T>& t){
-						Nodo(t, this);
-					}
-
-					Nodo Desapilar(){
-						Nodo * n = getNext();
-						return *n;
-					}
-			};
-			Trie<T>& trie;
+			stack<Trie *> p;
+			Trie<T>* trie;
 		public:
-			const_iterator(const Trie& t_) : trie(t_) {
-				CrearPila(p);
-				Trie<T>& t = this->trie.getIzq();
+			const_iterator(Trie* t_) : trie(t_) {
+				
+				Trie * t = t_->getIzq();
 				while(t != nullptr){
-					Apilar(p, this->trie);
+					p.push(this->trie);
 					this->trie = t;
-					t = this->trie.getIzq();
+					t = t->getIzq();
 				}
 			}
+
+			const_iterator(Trie* t_, int i) : trie(t_) {
+				this->trie = nullptr;
+			}
+			
 			
 		
 			//Este método redefine el operador de pre-incremento (++x).
 			//Representa el avance del iterador.
-			const_iterator& operator++(){ 	
-				if(Desapilar(this->p, this->trie)){
+			const_iterator& operator++(){ 
+				if(p.empty()){
+					this->trie = nullptr;
 					return (*this);
 				}
-				this->trie = this->trie.getDch();
-			/*	if (this->&trie == nullptr){
-					return (*this);
-				}*/
-				Trie& t = this->trie.getIzq();
+				//Trie * t = 
+				this->trie = p.top();
+				p.pop();
+				while(this->trie->getDch() == nullptr && !p.empty()){
+					this->trie = p.top();
+				}
+				if(this->trie->getDch() == nullptr){
+					return *this;
+				}
+				this->trie =  this->trie->getDch();
+				//this->trie = this->trie;
+				//this->trie = this->trie.getDch();
+				Trie * t = this->trie->getIzq();
 				while(t != nullptr){
-					Apilar(p, this->trie);
+					p.push(this->trie);
 					this->trie = t;
-					Trie& t = this->trie.getIzq();
+					t = this->trie->getIzq();
 				}
 				return (*this);
 				
 			}
 			//Este método redefine el operador de "apuntado" (*x)
 			//Representa la obtención de lo apuntado por el iterador.
-			const T& operator*()   const 
+			const Trie * operator*()   const 
 			{
 				return this->trie;
 				//TODO: Rellena este método para que devuelva el elemento T al que está apuntando el iterador.	
@@ -110,9 +135,7 @@ class Trie{
 		//
 			bool operator!=(const const_iterator& that) const 
 			{ 
-			//	return &this->trie == &that;
-				//TODO: Rellenar este método para devuelva true si este iterador y el iterador "that" apuntan
-				//a sitios diferentes, y false en caso contrario. 
+				return this->trie != that.trie;
 			}		
 
 		};
@@ -122,6 +145,6 @@ class Trie{
 		//la comprobación de que "existe siguiente".
 		//Date cuenta que los valores que le pasamos como índice del iterador son para que se recorra la
 		//estructura desde el último elemento (this->total - 1) hasta el primero (0).
-		const_iterator begin() const { return const_iterator(*this); }
-		const_iterator end()   const { return const_iterator(*this); }
+		const_iterator begin() { return const_iterator(this); }
+		const_iterator end()   { return const_iterator(this, 1); }
 };

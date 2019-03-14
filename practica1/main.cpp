@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <iostream>
 #include <string>
 #include <fstream>
 
@@ -12,10 +13,10 @@ using namespace std;
 enum{NUM_SIMBOLOS = 256};
 
 
-int comprimir(const char nombreFichero[]){
+int comprimir(string nombreFichero){
     ifstream f;
-    Heap mont();
-    char byteLeido;
+    Heap<Trie<char>> mont;
+    char byteLeido[1];
     int posicion;
     int frecuencias[NUM_SIMBOLOS];
     for (int i = 0; i< NUM_SIMBOLOS; i++){
@@ -26,26 +27,48 @@ int comprimir(const char nombreFichero[]){
 
     f.open(nombreFichero,ios::binary);
     if(f.is_open()){
+        f.read(byteLeido,1);
         while(!f.eof()){
-            fread(byteLeido,1);
-            posicion=byteLeido+'0';
-            frecuencias[posicion]++;
+            frecuencias[byteLeido[0]]++;
+            cout << byteLeido << " ";
+            f.read(byteLeido,1);
         }
-    f.close()
+        cout << endl;
+    f.close();
     }
     //generar monticulo
 
-    int it=0;
-    while(it<NUM_SIMBOLOS){
+    for(int it = 0; it < NUM_SIMBOLOS; it++){
         if(frecuencias[it]>0){
-            mont.add(frecuencias[it]);
+            Trie<char> * tr = new Trie<char>((char) it, frecuencias[it]);
+            mont.add(tr);
+            cout << frecuencias[it];
         }
-        cout>>frecuencias[it];
-        it++;
+    }
+    cout << endl;
+
+    /*while(!mont.isEmpty()){
+        //cout << mont.pop().getElement() << " ";
+        mont.pop();
+    }
+    cout << endl;*/
+    
+    //generar trie
+    while (mont.tamanyo() > 1){
+        Trie<char> * h = mont.pop();
+        Trie<char> * x = mont.pop();
+        //printf("f = %d + %d\n", h->getFrecuencia(), x->getFrecuencia());
+        Trie<char> * tr = new Trie<char>(x, h);
+        mont.add(tr);
     }
 
+    Trie<char> trieCompleto = *mont.pop();
 
-  //generar trie
+    int i = 1;
+    for(Trie<char> * t : trieCompleto){
+    
+        cout << i++ <<" (" <<t->getElement() << ", " << t->getFrecuencia() << ")" << endl;
+    }
 
     //generar vector equivalencias
 
@@ -73,20 +96,20 @@ int main(int argc, char ** argv){
     if (param1 == "-c"){
         //aragv == -c
         paramComprimir = true;
-    }else if(param2 == "-d"){
-        //aragv == -d
-    }else{
+    }else if(param1 != "-d"){
         //error en paraemtro
         printf("USO: huffer [-c | -d] <fichero>\n");
         return 1;
     }
+    
     //inicializar vector frecuencias
     //Abrir fichero
     //verificar fichero correctamente abierto
     if(paramComprimir){
-        return comprimir();
+        return comprimir(param2);
     }else{
         return descomprimir();
     }
+    return 0 ;
 }
 
