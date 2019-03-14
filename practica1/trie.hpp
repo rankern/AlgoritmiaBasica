@@ -39,30 +39,30 @@ class Trie{
 			return this->elemento;
 		}
 
-		const int getFrecuencia() const{
+		int getFrecuencia() {
 			return this->frecuencia;
 		}
 
-		const bool operator >=(const Trie& t) const{
+		bool operator >=(Trie& t) {
 			return this->frecuencia >= t.getFrecuencia();
 		}
 
-		const bool operator <=(const Trie& t) const{
+		bool operator <=(Trie& t) {
 			return this->frecuencia <= t.getFrecuencia();
 		}
-		const bool operator >(const Trie& t) const{
+		bool operator >(Trie& t) {
 			return this->frecuencia > t.getFrecuencia();
 		}
 
-		const bool operator <(const Trie& t) const {
+		bool operator <(Trie& t) {
 			return this->frecuencia < t.getFrecuencia();
 		}
 
-		const bool operator ==(const Trie& t) const{
+		bool operator ==(Trie& t) {
 			return this->frecuencia == t.getFrecuencia();
 		}
 
-		const string operator<<(Trie t) const{
+		string operator<<(Trie t) {
 			return t->getElement;
 		}
 
@@ -121,7 +121,7 @@ class Trie{
 			}
 			//Este método redefine el operador de "apuntado" (*x)
 			//Representa la obtención de lo apuntado por el iterador.
-			const Trie * operator*()   const 
+			Trie * operator*()   const 
 			{
 				return this->trie;
 				//TODO: Rellena este método para que devuelva el elemento T al que está apuntando el iterador.	

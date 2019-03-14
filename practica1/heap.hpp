@@ -32,14 +32,14 @@ class Heap{
 
 
 		T * pop(){
-			for (int i = 0; i< this->tam; i++){
+			/*for (int i = 0; i< this->tam; i++){
 				if(this->elementos[i]->getIzq() == nullptr){
 					printf("(%c, %d)", this->elementos[i]->getElement(), this->elementos[i]->getFrecuencia());
 				}else{
 					printf("(N, %d)", this->elementos[i]->getFrecuencia());
 				}
 			}
-			cout << endl;
+			cout << endl;*/
 			T * ret = this->elementos[0];
 			this->tam--;
 			this->elementos[0] = this->elementos[this->tam];

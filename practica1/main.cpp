@@ -30,7 +30,6 @@ int comprimir(string nombreFichero){
         f.read(byteLeido,1);
         while(!f.eof()){
             frecuencias[byteLeido[0]]++;
-            cout << byteLeido << " ";
             f.read(byteLeido,1);
         }
         cout << endl;
@@ -42,30 +41,31 @@ int comprimir(string nombreFichero){
         if(frecuencias[it]>0){
             Trie<char> * tr = new Trie<char>((char) it, frecuencias[it]);
             mont.add(tr);
-            cout << frecuencias[it];
         }
     }
-    cout << endl;
 
-    /*while(!mont.isEmpty()){
-        //cout << mont.pop().getElement() << " ";
-        mont.pop();
-    }
-    cout << endl;*/
-    
+
     //generar trie
     while (mont.tamanyo() > 1){
         Trie<char> * h = mont.pop();
         Trie<char> * x = mont.pop();
-        //printf("f = %d + %d\n", h->getFrecuencia(), x->getFrecuencia());
+        if(h->getIzq() == nullptr && x->getIzq() == nullptr){
+            printf("f = %d + %d\n", x->getFrecuencia(), h->getFrecuencia());
+        }else if(h->getIzq() != nullptr && x->getIzq() == nullptr){
+            printf("f =  %d + N %d\n", x->getFrecuencia(), h->getFrecuencia());
+        }else if(h->getIzq() == nullptr && x->getIzq() != nullptr){
+            printf("f = N %d + %d\n", x->getFrecuencia(), h->getFrecuencia());
+        }else{
+            printf("f = N %d + N %d\n", x->getFrecuencia(), h->getFrecuencia());
+        }
         Trie<char> * tr = new Trie<char>(x, h);
         mont.add(tr);
     }
 
-    Trie<char> trieCompleto = *mont.pop();
+    Trie<char> * trieCompleto = mont.pop();
 
     int i = 1;
-    for(Trie<char> * t : trieCompleto){
+    for(Trie<char> * t : *trieCompleto){
     
         cout << i++ <<" (" <<t->getElement() << ", " << t->getFrecuencia() << ")" << endl;
     }
