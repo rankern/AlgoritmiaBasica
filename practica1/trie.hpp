@@ -10,6 +10,7 @@
 
 #include "pila.hpp"
 #include <stack>
+#include <string>
 using namespace std;
 template <typename T>
 class Trie{
@@ -18,6 +19,7 @@ class Trie{
 		Trie * dch = nullptr;
 		T elemento;
 		int frecuencia = 0;
+		string codificacion = "";
 	
 	public:
 		Trie<T>(){}
@@ -41,6 +43,13 @@ class Trie{
 
 		int getFrecuencia() {
 			return this->frecuencia;
+		}
+
+		void setCode(string c){
+			this->codificacion = c;
+		}
+		string getCode(){
+			return this->codificacion;
 		}
 
 		bool operator >=(Trie& t) {
@@ -76,12 +85,15 @@ class Trie{
 			Trie<T>* trie;
 		public:
 			const_iterator(Trie* t_) : trie(t_) {
-				
+				string c = "";
+				c += "0";
 				Trie * t = t_->getIzq();
 				while(t != nullptr){
+					t->setCode(c);
 					p.push(this->trie);
 					this->trie = t;
 					t = t->getIzq();
+					c += "0";
 				}
 			}
 
@@ -107,11 +119,16 @@ class Trie{
 				if(this->trie->getDch() == nullptr){
 					return *this;
 				}
+				string c = this->trie->getCode();
 				this->trie =  this->trie->getDch();
+				c += "1";
+				this->trie->setCode(c);
 				//this->trie = this->trie;
 				//this->trie = this->trie.getDch();
 				Trie * t = this->trie->getIzq();
 				while(t != nullptr){
+					c += "0";
+					t->setCode(c);
 					p.push(this->trie);
 					this->trie = t;
 					t = this->trie->getIzq();
