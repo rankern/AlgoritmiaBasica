@@ -80,7 +80,7 @@ int comprimir(string nombreFichero){
 	}
 	//Volver a leer fichero y codificar
 	f.open(nombreFichero,ios::binary);
-	Escritura e(nombreFichero + ".comp");
+	Escritura e(nombreFichero + ".huf");
 	e.escribirFrecuencias(frecuencias);
 	if(!f.is_open()){ return 1;}
 	f.read(byteLeido,1);
@@ -105,7 +105,7 @@ int descomprimir(string nombreFichero){
 	int tam, simbolos, frecuencia, simbolo;
 	char kk;
 	Heap<Trie<char>> mont;
-	f.open(nombreFichero,ios::binary);
+	f.open(nombreFichero + ".huf",ios::binary);
 	if(!f.is_open()){ return 1;}   
 	f >> tam >> simbolos;
 
@@ -128,7 +128,7 @@ int descomprimir(string nombreFichero){
 	Trie <char> * pos = trieCompleto;
 	f.read(byteLeido,1);
 	f.read(byteLeido,1);
-	o.open(nombreFichero + ".desc", ios::binary);
+	o.open(nombreFichero, ios::binary);
 	if(!o.is_open()){ return 1;}
 	int reconocidoEn = 0;
 	char printy[1];
