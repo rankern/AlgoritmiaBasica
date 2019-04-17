@@ -4,6 +4,7 @@ aImprimir=' ';
 aImprimiAux=$aImprimir;
 if [ -f $1 ]
 then
+cat /dev/null > $1
 for i in $(seq 32 256)
 do 
 	for j in $(seq 1 5000)
