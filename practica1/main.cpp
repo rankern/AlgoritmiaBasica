@@ -12,6 +12,7 @@
 using namespace std;
 
 enum{NUM_SIMBOLOS = 256};
+bool verbose = false;
 
 int decod(Trie<char> *& t , char u, int desde){
 	unsigned char mask = 0x80;
@@ -40,7 +41,6 @@ int comprimir(string nombreFichero){
 	for (int i = 0; i< NUM_SIMBOLOS; i++){
 		frecuencias[i] = 0;
 	}
-
 	//lectura fichero
 
 	f.open(nombreFichero,ios::binary);
@@ -50,18 +50,21 @@ int comprimir(string nombreFichero){
 		while(!f.eof()){
 			unsigned int leido = byteLeido[0];
 			frecuencias[leido%256]++;
-			f.read(byteLeido,1); 
-			
+			f.read(byteLeido,1); 	
 		}
 	}
 	f.close();
+	int leidos = 0;
 	for(int it = 0; it < NUM_SIMBOLOS; it++){
 		if(frecuencias[it]>0){
+			if(verbose)
+				leidos++;
 			Trie<char> * tr = new Trie<char>((char) it, frecuencias[it]);
 			mont.add(tr);
 		}
 	}
-
+	if(verbose)
+		cout << "Cantidad de bytes distintos leidos = " << leidos << endl;
 
 	//generar trie
 	while (mont.tamanyo() > 1){
@@ -156,6 +159,7 @@ int main(int argc, char ** argv){
 	}
 	string param1(argv[1]);
 	string param2(argv[2]);
+	verbose = (argc == 4);
 	if (param1 == "-c"){
 		//aragv == -c
 		paramComprimir = true;
@@ -175,4 +179,3 @@ int main(int argc, char ** argv){
 	}
 	return 0 ;
 }
-
