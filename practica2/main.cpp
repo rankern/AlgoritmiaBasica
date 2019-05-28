@@ -3,7 +3,15 @@
 #include <stdlib.h>     /* srand, rand */
 #include <time.h>       /* time */
 #include <fstream>
+#include "clases/heap.hpp"
+#include "clases/pedido.hpp"
+#include "clases/problema.hpp"
 using namespace std;
+
+void resolverProblema(Problema &tren, Pedido pedidos[] ){
+
+}
+
 
 int main(int argc, char *argv[]){
 	string fichEnt="pruebas.txt";
@@ -28,7 +36,8 @@ int main(int argc, char *argv[]){
 		int numPasajeros;
 		fEnt>>capMax>>numEstacionFinal>>numPedidos;
 		cout<<capMax<<numEstacionFinal<<numPedidos<<endl;
-
+		Problema tren(capMax, numEstacionFinal, numPedidos);
+		Pedido pedidos[numPedidos];
 		while(!fEnt.eof()){
 			if(capMax!=0 && numEstacionFinal!=0 && numPedidos!=0){
 				start = clock();
@@ -37,9 +46,8 @@ int main(int argc, char *argv[]){
 					
 					fEnt>>estSalida>>estLlegada>>numPasajeros;
 					cout<<estSalida<<estLlegada<<numPasajeros<<endl;
+					pedidos[pedidosLeidos] = Pedido(numPasajeros, estSalida, estLlegada);
 					pedidosLeidos++;
-					//Crear Pedido(estSalida,estLlegada,numPasajeros)
-					//Beneficio=(estLlegada-estSalida)*numPasajeros;
 					//Añadir a montículo
 					//crear Nodo()
 
