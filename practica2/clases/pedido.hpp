@@ -12,10 +12,10 @@ class Pedido{
         Pedido(int _billetes, int iniEstacion, int finEstacion): numBilletes(_billetes), estacionInicial(iniEstacion), estacionFinal(finEstacion){
             beneficio = (estacionFinal - estacionInicial) * numBilletes;
         }
-        int Pedido::billetes(){return numBilletes;}
-        int Pedido::estacionIni(){return estacionInicial;}
-        int Pedido::estacionFin(){return estacionFinal;}
-        int Pedido::beneficioPedido(){return beneficio;}
+        int billetes(){return numBilletes;}
+        int estacionIni(){return estacionInicial;}
+        int estacionFin(){return estacionFinal;}
+        int beneficioPedido(){return beneficio;}
         
 };
 

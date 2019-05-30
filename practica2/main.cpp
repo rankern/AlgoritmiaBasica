@@ -14,7 +14,7 @@ void resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
 	while (!nodos.isEmpty()){
 		Problema *noCogido = nodos.pop();
 		Problema cogido = noCogido->clone(); //clone incrementa en 1 el numPedido de noCogido
-		if(cogido.anyadir(pedidos[noCogido->siguientePedido])){
+		if(cogido.anyadir(pedidos[noCogido->siguientePedido()])){
 			double coste = cogido.costeEstimado(pedidos, numPedidos);
 			if(U_min >= coste){
 				int cota = cogido.cota_mejor(pedidos, numPedidos);
@@ -47,7 +47,11 @@ void resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
 
 int main(int argc, char *argv[]){
 	string fichEnt = "pruebas.txt";
-	string fichSal = "fiche.txt";
+	string fichSal = "resultado.txt";
+	if(argc == 3){
+		fichEnt = string(argv[1]);
+		fichSal = string(argv[2]);
+	}
 	ifstream fEnt;
 	ofstream fSal;
 	int beneficioMax = 0; //U
