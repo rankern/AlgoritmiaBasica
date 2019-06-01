@@ -8,41 +8,47 @@
 #include "clases/problema.hpp"
 using namespace std;
 
-void resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
+/**
+ * Devuelve true si y solo si no es hoja y hay que insertarlo en monticulo
+ */ 
+bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedidos, Pedido pedidos[]){
+	bool insertar = false;
+	double coste = p->costeEstimado(pedidos, numPedidos);
+	if(U_min >= coste){
+		int cota = p->cota_mejor(pedidos, numPedidos);
+		if(cota == coste || p->siguientePedido() == numPedidos - 1){
+			/** HOJA*/
+			if((0-coste) > mBeneficio){
+				mBeneficio = p->beneficioActual();
+			}
+		}else{
+			insertar = true;
+		}
+		if(cota < U_min){
+			U_min = cota;
+		}
+	}
+	return insertar;
+}
+
+
+int resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
 	double U_min = 0;
 	int mejorBenefico = 0;
 	while (!nodos.isEmpty()){
 		Problema *noCogido = nodos.pop();
-		Problema cogido = noCogido->clone(); //clone incrementa en 1 el numPedido de noCogido
-		if(cogido.anyadir(pedidos[noCogido->siguientePedido()])){
-			double coste = cogido.costeEstimado(pedidos, numPedidos);
-			if(U_min >= coste){
-				int cota = cogido.cota_mejor(pedidos, numPedidos);
-				if((cota == coste || cogido.siguientePedido() == numPedidos) && (0-cota) > mejorBenefico){
-					/** HOJA*/
-					mejorBenefico = 0-cota;
-				}else{
-					nodos.add(&cogido);
-				}
-				if(cota < U_min){
-					U_min = cota;
-				}
-			}
-			 coste = noCogido->costeEstimado(pedidos, numPedidos);
-			if(U_min >= coste){
-				int cota = noCogido->cota_mejor(pedidos, numPedidos);
-				if((cota == coste || noCogido->siguientePedido() == numPedidos) && (0-cota) > mejorBenefico){
-					/** HOJA*/
-					mejorBenefico = 0-cota;
-				}else{
-					nodos.add(noCogido);
-				}
-				if(cota < U_min){
-					U_min = cota;
-				}
+		Problema *cogido = noCogido->clone(); //clone incrementa en 1 el numPedido de noCogido
+		
+		if(cogido->anyadir(pedidos[noCogido->siguientePedido()])){
+			if(calculosCotaYCoste(mejorBenefico, U_min, cogido,numPedidos, pedidos)){
+				nodos.add(cogido);
 			}
 		}
+		if(calculosCotaYCoste(mejorBenefico, U_min, noCogido,numPedidos, pedidos)){
+				nodos.add(noCogido);
+		}
 	}
+	return mejorBenefico;
 }
 
 int main(int argc, char *argv[]){
@@ -67,33 +73,45 @@ int main(int argc, char *argv[]){
 		fSal.open(fichSal);
 		if (fSal.is_open()){
 
-			int estSalida;
-			int estLlegada;
-			int numPasajeros;
 			fEnt >> capMax >> numEstacionFinal >> numPedidos;
-			cout << capMax << numEstacionFinal << numPedidos << endl;
-			Problema tren(capMax, numEstacionFinal, numPedidos);
-			Pedido pedidos[numPedidos];
-			Heap<Problema> frontera;
-			frontera.add(&tren);
+			cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			while (!fEnt.eof()){
-				if (capMax != 0 && numEstacionFinal != 0 && numPedidos != 0){
-					start = clock();
-					pedidosLeidos = 0;
-					while (pedidosLeidos < numPedidos){
-
-						fEnt >> estSalida >> estLlegada >> numPasajeros;
-						cout << estSalida << estLlegada << numPasajeros << endl;
-						pedidos[pedidosLeidos] = Pedido(numPasajeros, estSalida, estLlegada);
-						pedidosLeidos++;
-					}
-					resolverProblema(pedidos, frontera, numPedidos);
-					end = clock();
-					int tiempo = (end - start);
-					fSal << beneficioMax << " " << tiempo << "\n";
+				if (capMax == 0 && numEstacionFinal == 0 && numPedidos == 0){
+					break;
 				}
+				//definir variables variables problema
+				Problema tren(capMax, numEstacionFinal, numPedidos);
+				Heap<Problema> frontera;
+				Pedido pedidos[numPedidos];
+				Heap<Pedido> ordenacionInicial;
+				frontera.add(&tren);
+
+				//Leer pedidos del probelma
+				pedidosLeidos = 0;
+				while (!fEnt.eof() && pedidosLeidos < numPedidos){
+					int estSalida, estLlegada, numPasajeros;
+					fEnt >> estSalida >> estLlegada >> numPasajeros;
+					cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
+					Pedido * p = new Pedido(numPasajeros, estSalida, estLlegada);
+					ordenacionInicial.add(p);
+					pedidosLeidos++;
+				}
+
+				int i = 0;
+				while(!ordenacionInicial.isEmpty()){
+					pedidos[i] = *ordenacionInicial.pop();
+					i++;
+				}
+				start = clock();
+				beneficioMax = resolverProblema(pedidos, frontera, numPedidos);
+				end = clock();
+				int tiempo = (end - start);
+				fSal << beneficioMax << " " << tiempo << "\n";
+				cout << "----------------------------------------\n" << beneficioMax << " "
+					 << tiempo << "\n" << "----------------------------------------\n";
 				//Leer otro bloque
 				fEnt >> capMax >> numEstacionFinal >> numPedidos;
+				cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			}
 			fSal.close();
 		}else{

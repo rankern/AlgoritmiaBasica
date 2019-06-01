@@ -16,6 +16,20 @@ class Pedido{
         int estacionIni(){return estacionInicial;}
         int estacionFin(){return estacionFinal;}
         int beneficioPedido(){return beneficio;}
+        double beneficioIndividual(){return (double)this->beneficio/this->numBilletes;}
+        bool operator >=(Pedido& p) {
+			return (double)this->beneficio/this->numBilletes <= p.beneficioIndividual();
+		}
+		bool operator <=(Pedido& p) {
+			return (double)this->beneficio/this->numBilletes >= p.beneficioIndividual();
+		}
+		bool operator >(Pedido& p) {
+			return (double)this->beneficio/this->numBilletes < p.beneficioIndividual();
+		}
+
+		bool operator <(Pedido& p) {
+			return (double)this->beneficio/this->numBilletes > p.beneficioIndividual();
+		}		
         
 };
 

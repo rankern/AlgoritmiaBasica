@@ -10,7 +10,7 @@ class Problema{
 	int numEstaciones = 0;
 	int numPedidos = 0;
 	int beneficioAcum = 0;
-	int pedidoActual = 0;
+	int pedidoActual = -1;
 	int tramos[7] = {0,0,0,0,0,0,0};
 	public:
 		Problema(){}
@@ -25,9 +25,9 @@ class Problema{
 					}
 				}	
 		
-		Problema clone(){
+		Problema *clone(){
 			pedidoActual++;
-			return Problema(maxCapacidad, numEstaciones, numPedidos, pedidoActual-1, beneficioAcum, tramos);
+			return new Problema(maxCapacidad, numEstaciones, numPedidos, pedidoActual-1, beneficioAcum, tramos);
 		}
 		
 		int beneficioActual(){return beneficioAcum;}
@@ -95,14 +95,15 @@ class Problema{
 		double costeEstimado(Pedido pedidos[], int numPedidos){
 			double coste = this->beneficioAcum;
 			int replica[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
-			for(int i = this->pedidoActual; i < numPedidos; i++){
+			for(int i = this->pedidoActual  + 1; i < numPedidos; i++){
 				int maxPasajeros = replica[this->max(replica, pedidos[i].estacionIni(), pedidos[i].estacionFin())];
-
 				int nuevosPasajeros = pedidos[i].billetes();
 				int beneficio = pedidos[i].beneficioPedido();
-				if(maxPasajeros < nuevosPasajeros){
-					int nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
+				if((this->maxCapacidad - maxPasajeros) < nuevosPasajeros){
+					nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
 					beneficio = nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni());
+				}if(nuevosPasajeros < 1){
+					continue;
 				}
 				coste = coste + beneficio;
 				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
@@ -115,14 +116,14 @@ class Problema{
 		int cota_mejor(Pedido pedidos[], int numPedidos){
 			int cota = this->beneficioAcum;
 			int replica[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
-			for(int i = this->pedidoActual; i < numPedidos; i++){
-				if(replica[this->max(replica,pedidos[i].estacionIni(), pedidos[i].estacionFin())] < pedidos[i].billetes()){
+			for(int i = this->pedidoActual + 1; i < numPedidos; i++){
+				if(this-> maxCapacidad -(replica[this->max(replica,pedidos[i].estacionIni(), pedidos[i].estacionFin())]) < pedidos[i].billetes()){
 					continue;
 				}
 				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
 					replica[j] += pedidos[i].billetes();
 				}
-				cota += pedidos[i].billetes();
+				cota += pedidos[i].beneficioPedido();
 			}
 			return 0 - cota;
 		}
