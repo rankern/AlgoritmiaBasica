@@ -84,8 +84,9 @@ int main(int argc, char *argv[]){
 				Heap<Problema> frontera;
 				Pedido pedidos[numPedidos];
 				Heap<Pedido> ordenacionInicial;
-				frontera.add(&tren);
-
+				if(numPedidos > 0){
+					frontera.add(&tren);
+				}
 				//Leer pedidos del probelma
 				pedidosLeidos = 0;
 				while (!fEnt.eof() && pedidosLeidos < numPedidos){
