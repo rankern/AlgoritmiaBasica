@@ -6,6 +6,7 @@
 using namespace std;
 class Problema{
 	private:
+	double costeEst = 0;
 	int maxCapacidad = 0;
 	int numEstaciones = 0;
 	int numPedidos = 0;
@@ -25,21 +26,26 @@ class Problema{
 					}
 				}	
 		
-		Problema *clone(){
+		Problema *clone(Pedido pedidos[], int numPedido){
 			pedidoActual++;
-			return new Problema(maxCapacidad, numEstaciones, numPedidos, pedidoActual-1, beneficioAcum, tramos);
+			Problema *p =  new Problema(maxCapacidad, numEstaciones, numPedidos, pedidoActual-1, beneficioAcum, tramos);
+			this->costeEst = this->costeEstimado(pedidos, numPedido);
+			return p;
 		}
 		
 		int beneficioActual(){return beneficioAcum;}
 
-		bool anyadir(Pedido &p){
+		bool anyadir(Pedido &p, Pedido pedidos[], int numPedido){
 			this->pedidoActual++;
 			bool ok = true;
 			for(int i = p.estacionIni();i < p.estacionFin() && ok; i++){
 				tramos[i] += p.billetes();
 				ok = tramos[i] <= maxCapacidad;
 			}
-			beneficioAcum += p.beneficioPedido();
+			if(ok){
+				beneficioAcum += p.beneficioPedido();
+				this->costeEst = this->costeEstimado(pedidos, numPedido);
+			}
 			return ok;
 		}
 		/** indice del vector tramos con mayor cardinal de gente*/
@@ -54,7 +60,7 @@ class Problema{
 			}
 			return indice;
 		}
-
+		double cEstim(){return this->costeEst;}
 		/* void costeYcota(Pedido pedidos[], int numPedidos, double &cota, double &coste) {
 			cota = this->beneficioAcum;
 			coste = this->beneficioAcum;
@@ -117,6 +123,7 @@ class Problema{
 			int cota = this->beneficioAcum;
 			int replica[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
 			for(int i = this->pedidoActual + 1; i < numPedidos; i++){
+		//		cout << "billetes "<<pedidos[i].billetes() << endl; 
 				if(this-> maxCapacidad -(replica[this->max(replica,pedidos[i].estacionIni(), pedidos[i].estacionFin())]) < pedidos[i].billetes()){
 					continue;
 				}
@@ -133,17 +140,17 @@ class Problema{
 		int siguientePedido(){return this->pedidoActual;}
 
 		bool operator >=(Problema& p) {
-			return this->beneficioActual() >= p.beneficioActual();
+			return this->cEstim() >= p.cEstim();
 		}
 
 		bool operator <=(Problema& p) {
-			return this->beneficioActual() <= p.beneficioActual();
+			return this->cEstim() <= p.cEstim();
 		}
 		bool operator >(Problema& p) {
-			return this->beneficioActual() > p.beneficioActual();
+			return this->cEstim() > p.cEstim();
 		}
 
 		bool operator <(Problema& p) {
-			return this->beneficioActual() < p.beneficioActual();
+			return this->cEstim() < p.cEstim();
 		}		
 };

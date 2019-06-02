@@ -13,13 +13,14 @@ using namespace std;
  */ 
 bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedidos, Pedido pedidos[]){
 	bool insertar = false;
-	double coste = p->costeEstimado(pedidos, numPedidos);
+	//double coste = p->costeEstimado(pedidos, numPedidos);
+	double coste = p->cEstim();
 	if(U_min >= coste){
 		int cota = p->cota_mejor(pedidos, numPedidos);
-		if(cota == coste || p->siguientePedido() == numPedidos - 1){
+		if( cota == coste ||  p->siguientePedido() == numPedidos - 1){
 			/** HOJA*/
 			if((0-coste) > mBeneficio){
-				mBeneficio = p->beneficioActual();
+				mBeneficio = (0 -coste);
 			}
 		}else{
 			insertar = true;
@@ -27,6 +28,8 @@ bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedi
 		if(cota < U_min){
 			U_min = cota;
 		}
+	}else{
+		volatile int a = 1;
 	}
 	return insertar;
 }
@@ -37,15 +40,19 @@ int resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
 	int mejorBenefico = 0;
 	while (!nodos.isEmpty()){
 		Problema *noCogido = nodos.pop();
-		Problema *cogido = noCogido->clone(); //clone incrementa en 1 el numPedido de noCogido
+		Problema *cogido = noCogido->clone(pedidos, numPedidos); //clone incrementa en 1 el numPedido de noCogido
 		
-		if(cogido->anyadir(pedidos[noCogido->siguientePedido()])){
+		if(cogido->anyadir(pedidos[noCogido->siguientePedido()], pedidos, numPedidos)){
 			if(calculosCotaYCoste(mejorBenefico, U_min, cogido,numPedidos, pedidos)){
 				nodos.add(cogido);
 			}
+		}else{
+			delete cogido;
 		}
 		if(calculosCotaYCoste(mejorBenefico, U_min, noCogido,numPedidos, pedidos)){
 				nodos.add(noCogido);
+		}else{
+			delete noCogido;
 		}
 	}
 	return mejorBenefico;
@@ -66,7 +73,7 @@ int main(int argc, char *argv[]){
 	int numEstacionFinal;
 	int pedidosLeidos;
 	clock_t start, end;
-
+	int numProblemas =1;
 	fEnt.open(fichEnt);
 
 	if (fEnt.is_open()){
@@ -74,25 +81,25 @@ int main(int argc, char *argv[]){
 		if (fSal.is_open()){
 
 			fEnt >> capMax >> numEstacionFinal >> numPedidos;
-			cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
+			std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			while (!fEnt.eof()){
 				if (capMax == 0 && numEstacionFinal == 0 && numPedidos == 0){
 					break;
 				}
 				//definir variables variables problema
-				Problema tren(capMax, numEstacionFinal, numPedidos);
+				Problema * tren = new Problema(capMax, numEstacionFinal, numPedidos);
 				Heap<Problema> frontera;
 				Pedido pedidos[numPedidos];
 				Heap<Pedido> ordenacionInicial;
 				if(numPedidos > 0){
-					frontera.add(&tren);
+					frontera.add(tren);
 				}
 				//Leer pedidos del probelma
 				pedidosLeidos = 0;
 				while (!fEnt.eof() && pedidosLeidos < numPedidos){
 					int estSalida, estLlegada, numPasajeros;
 					fEnt >> estSalida >> estLlegada >> numPasajeros;
-					cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
+					std::cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
 					Pedido * p = new Pedido(numPasajeros, estSalida, estLlegada);
 					ordenacionInicial.add(p);
 					pedidosLeidos++;
@@ -108,19 +115,23 @@ int main(int argc, char *argv[]){
 				end = clock();
 				int tiempo = (end - start);
 				fSal << beneficioMax << " " << tiempo << "\n";
-				cout << "----------------------------------------\n" << beneficioMax << " "
+				std::cout << "----------------------------------------\n" << beneficioMax << " "
 					 << tiempo << "\n" << "----------------------------------------\n";
 				//Leer otro bloque
+				numProblemas++;
+				if(numProblemas == 167){
+					volatile int a = 2;
+				}
 				fEnt >> capMax >> numEstacionFinal >> numPedidos;
-				cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
+				std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			}
 			fSal.close();
 		}else{
-			cout << "No se ha podido abrir el fichero de salida" << endl;
+			std::cout << "No se ha podido abrir el fichero de salida" << endl;
 		}
 		fEnt.close();
 	}else{
-		cout << "No se ha podido abrir el fichero de entrada" << endl;
+		std::cout << "No se ha podido abrir el fichero de entrada" << endl;
 	}
 
 	return 0;

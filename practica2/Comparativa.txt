@@ -1,0 +1,717 @@
+------------------------------
+problema 91 31055 Pero se ha obtenido: 0
+resultado: 0 13
+resultado FB: problema 91 31055
+------------------------------
+problema 160 84750 Pero se ha obtenido: 82408
+resultado: 82408 23
+resultado FB: problema 160 84750
+------------------------------
+problema 167 141295 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 167 141295
+------------------------------
+problema 193 109718 Pero se ha obtenido: 100660
+resultado: 100660 46
+resultado FB: problema 193 109718
+------------------------------
+problema 259 138061 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 259 138061
+------------------------------
+problema 271 129154 Pero se ha obtenido: 119622
+resultado: 119622 45
+resultado FB: problema 271 129154
+------------------------------
+problema 303 94116 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 303 94116
+------------------------------
+problema 327 43805 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 327 43805
+------------------------------
+problema 337 145545 Pero se ha obtenido: 144203
+resultado: 144203 30
+resultado FB: problema 337 145545
+------------------------------
+problema 360 132622 Pero se ha obtenido: 119572
+resultado: 119572 2
+resultado FB: problema 360 132622
+------------------------------
+problema 380 137312 Pero se ha obtenido: 0
+resultado: 0 1
+resultado FB: problema 380 137312
+------------------------------
+problema 386 102599 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 386 102599
+------------------------------
+problema 406 87571 Pero se ha obtenido: 0
+resultado: 0 6
+resultado FB: problema 406 87571
+------------------------------
+problema 498 161067 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 498 161067
+------------------------------
+problema 519 124286 Pero se ha obtenido: 0
+resultado: 0 16
+resultado FB: problema 519 124286
+------------------------------
+problema 551 93205 Pero se ha obtenido: 92720
+resultado: 92720 53
+resultado FB: problema 551 93205
+------------------------------
+problema 569 89622 Pero se ha obtenido: 0
+resultado: 0 18
+resultado FB: problema 569 89622
+------------------------------
+problema 578 64685 Pero se ha obtenido: 59085
+resultado: 59085 10
+resultado FB: problema 578 64685
+------------------------------
+problema 632 106700 Pero se ha obtenido: 92893
+resultado: 92893 3
+resultado FB: problema 632 106700
+------------------------------
+problema 659 193748 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 659 193748
+------------------------------
+problema 714 194301 Pero se ha obtenido: 168313
+resultado: 168313 12
+resultado FB: problema 714 194301
+------------------------------
+problema 718 179871 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 718 179871
+------------------------------
+problema 747 113602 Pero se ha obtenido: 103683
+resultado: 103683 10
+resultado FB: problema 747 113602
+------------------------------
+problema 773 86595 Pero se ha obtenido: 80076
+resultado: 80076 6
+resultado FB: problema 773 86595
+------------------------------
+problema 856 92092 Pero se ha obtenido: 89673
+resultado: 89673 37
+resultado FB: problema 856 92092
+------------------------------
+problema 903 125176 Pero se ha obtenido: 116297
+resultado: 116297 17
+resultado FB: problema 903 125176
+------------------------------
+problema 967 156933 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 967 156933
+------------------------------
+problema 971 186705 Pero se ha obtenido: 147583
+resultado: 147583 14
+resultado FB: problema 971 186705
+------------------------------
+problema 994 192750 Pero se ha obtenido: 0
+resultado: 0 204
+resultado FB: problema 994 192750
+------------------------------
+problema 1070 185580 Pero se ha obtenido: 171042
+resultado: 171042 17
+resultado FB: problema 1070 185580
+------------------------------
+problema 1166 89495 Pero se ha obtenido: 0
+resultado: 0 35
+resultado FB: problema 1166 89495
+------------------------------
+problema 1211 181861 Pero se ha obtenido: 181739
+resultado: 181739 6
+resultado FB: problema 1211 181861
+------------------------------
+problema 1340 112868 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 1340 112868
+------------------------------
+problema 1492 85184 Pero se ha obtenido: 81164
+resultado: 81164 11
+resultado FB: problema 1492 85184
+------------------------------
+problema 1561 22528 Pero se ha obtenido: 19001
+resultado: 19001 19
+resultado FB: problema 1561 22528
+------------------------------
+problema 1619 67933 Pero se ha obtenido: 64844
+resultado: 64844 13
+resultado FB: problema 1619 67933
+------------------------------
+problema 1716 138615 Pero se ha obtenido: 136387
+resultado: 136387 49
+resultado FB: problema 1716 138615
+------------------------------
+problema 1736 102599 Pero se ha obtenido: 98510
+resultado: 98510 11
+resultado FB: problema 1736 102599
+------------------------------
+problema 1760 122246 Pero se ha obtenido: 0
+resultado: 0 29
+resultado FB: problema 1760 122246
+------------------------------
+problema 1961 68632 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 1961 68632
+------------------------------
+problema 1989 161571 Pero se ha obtenido: 154246
+resultado: 154246 26
+resultado FB: problema 1989 161571
+------------------------------
+problema 2020 42402 Pero se ha obtenido: 35462
+resultado: 35462 8
+resultado FB: problema 2020 42402
+------------------------------
+problema 2032 153883 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 2032 153883
+------------------------------
+problema 2063 154239 Pero se ha obtenido: 151895
+resultado: 151895 17
+resultado FB: problema 2063 154239
+------------------------------
+problema 2073 108933 Pero se ha obtenido: 0
+resultado: 0 9
+resultado FB: problema 2073 108933
+------------------------------
+problema 2187 73369 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 2187 73369
+------------------------------
+problema 2192 107909 Pero se ha obtenido: 104061
+resultado: 104061 5
+resultado FB: problema 2192 107909
+------------------------------
+problema 2249 149740 Pero se ha obtenido: 147377
+resultado: 147377 27
+resultado FB: problema 2249 149740
+------------------------------
+problema 2273 69943 Pero se ha obtenido: 67169
+resultado: 67169 13
+resultado FB: problema 2273 69943
+------------------------------
+problema 2319 106788 Pero se ha obtenido: 0
+resultado: 0 6
+resultado FB: problema 2319 106788
+------------------------------
+problema 2332 79654 Pero se ha obtenido: 0
+resultado: 0 23
+resultado FB: problema 2332 79654
+------------------------------
+problema 2335 102060 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 2335 102060
+------------------------------
+problema 2374 138400 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 2374 138400
+------------------------------
+problema 2389 87271 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 2389 87271
+------------------------------
+problema 2396 202252 Pero se ha obtenido: 180530
+resultado: 180530 26
+resultado FB: problema 2396 202252
+------------------------------
+problema 2442 77862 Pero se ha obtenido: 75769
+resultado: 75769 50
+resultado FB: problema 2442 77862
+------------------------------
+problema 2451 119727 Pero se ha obtenido: 105423
+resultado: 105423 12
+resultado FB: problema 2451 119727
+------------------------------
+problema 2469 31531 Pero se ha obtenido: 0
+resultado: 0 8
+resultado FB: problema 2469 31531
+------------------------------
+problema 2481 115322 Pero se ha obtenido: 114534
+resultado: 114534 5
+resultado FB: problema 2481 115322
+------------------------------
+problema 2505 94431 Pero se ha obtenido: 93562
+resultado: 93562 16
+resultado FB: problema 2505 94431
+------------------------------
+problema 2525 177965 Pero se ha obtenido: 144089
+resultado: 144089 14
+resultado FB: problema 2525 177965
+------------------------------
+problema 2609 38741 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 2609 38741
+------------------------------
+problema 2633 130040 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 2633 130040
+------------------------------
+problema 2752 106314 Pero se ha obtenido: 0
+resultado: 0 11
+resultado FB: problema 2752 106314
+------------------------------
+problema 2768 93474 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 2768 93474
+------------------------------
+problema 2795 14247 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 2795 14247
+------------------------------
+problema 2831 48385 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 2831 48385
+------------------------------
+problema 2845 114925 Pero se ha obtenido: 114553
+resultado: 114553 18
+resultado FB: problema 2845 114925
+------------------------------
+problema 2964 130355 Pero se ha obtenido: 103480
+resultado: 103480 37
+resultado FB: problema 2964 130355
+------------------------------
+problema 2966 159696 Pero se ha obtenido: 0
+resultado: 0 10
+resultado FB: problema 2966 159696
+------------------------------
+problema 3051 153400 Pero se ha obtenido: 148758
+resultado: 148758 13
+resultado FB: problema 3051 153400
+------------------------------
+problema 3054 124669 Pero se ha obtenido: 119019
+resultado: 119019 11
+resultado FB: problema 3054 124669
+------------------------------
+problema 3084 69211 Pero se ha obtenido: 58208
+resultado: 58208 8
+resultado FB: problema 3084 69211
+------------------------------
+problema 3254 96996 Pero se ha obtenido: 95380
+resultado: 95380 4
+resultado FB: problema 3254 96996
+------------------------------
+problema 3333 70060 Pero se ha obtenido: 67954
+resultado: 67954 19
+resultado FB: problema 3333 70060
+------------------------------
+problema 3363 125952 Pero se ha obtenido: 0
+resultado: 0 11
+resultado FB: problema 3363 125952
+------------------------------
+problema 3367 167131 Pero se ha obtenido: 160456
+resultado: 160456 22
+resultado FB: problema 3367 167131
+------------------------------
+problema 3368 108908 Pero se ha obtenido: 108708
+resultado: 108708 21
+resultado FB: problema 3368 108908
+------------------------------
+problema 3388 187512 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 3388 187512
+------------------------------
+problema 3395 10754 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 3395 10754
+------------------------------
+problema 3402 58779 Pero se ha obtenido: 58389
+resultado: 58389 56
+resultado FB: problema 3402 58779
+------------------------------
+problema 3426 64430 Pero se ha obtenido: 0
+resultado: 0 8
+resultado FB: problema 3426 64430
+------------------------------
+problema 3521 86554 Pero se ha obtenido: 84520
+resultado: 84520 3
+resultado FB: problema 3521 86554
+------------------------------
+problema 3613 134105 Pero se ha obtenido: 126700
+resultado: 126700 11
+resultado FB: problema 3613 134105
+------------------------------
+problema 3626 75395 Pero se ha obtenido: 54398
+resultado: 54398 4
+resultado FB: problema 3626 75395
+------------------------------
+problema 3647 100607 Pero se ha obtenido: 0
+resultado: 0 10
+resultado FB: problema 3647 100607
+------------------------------
+problema 3649 189142 Pero se ha obtenido: 0
+resultado: 0 49
+resultado FB: problema 3649 189142
+------------------------------
+problema 3674 108908 Pero se ha obtenido: 103323
+resultado: 103323 4
+resultado FB: problema 3674 108908
+------------------------------
+problema 3703 175320 Pero se ha obtenido: 153450
+resultado: 153450 24
+resultado FB: problema 3703 175320
+------------------------------
+problema 3707 86879 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 3707 86879
+------------------------------
+problema 3748 115863 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 3748 115863
+------------------------------
+problema 3786 59744 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 3786 59744
+------------------------------
+problema 3845 73621 Pero se ha obtenido: 0
+resultado: 0 10
+resultado FB: problema 3845 73621
+------------------------------
+problema 3885 162896 Pero se ha obtenido: 141818
+resultado: 141818 6
+resultado FB: problema 3885 162896
+------------------------------
+problema 3930 101745 Pero se ha obtenido: 95230
+resultado: 95230 18
+resultado FB: problema 3930 101745
+------------------------------
+problema 3972 128520 Pero se ha obtenido: 0
+resultado: 0 8
+resultado FB: problema 3972 128520
+------------------------------
+problema 4057 162078 Pero se ha obtenido: 161416
+resultado: 161416 15
+resultado FB: problema 4057 162078
+------------------------------
+problema 4073 166246 Pero se ha obtenido: 152415
+resultado: 152415 29
+resultado FB: problema 4073 166246
+------------------------------
+problema 4083 143242 Pero se ha obtenido: 133639
+resultado: 133639 15
+resultado FB: problema 4083 143242
+------------------------------
+problema 4096 176438 Pero se ha obtenido: 166602
+resultado: 166602 10
+resultado FB: problema 4096 176438
+------------------------------
+problema 4227 110221 Pero se ha obtenido: 108119
+resultado: 108119 31
+resultado FB: problema 4227 110221
+------------------------------
+problema 4268 57334 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 4268 57334
+------------------------------
+problema 4320 108927 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 4320 108927
+------------------------------
+problema 4340 136034 Pero se ha obtenido: 0
+resultado: 0 13
+resultado FB: problema 4340 136034
+------------------------------
+problema 4402 176369 Pero se ha obtenido: 173294
+resultado: 173294 133
+resultado FB: problema 4402 176369
+------------------------------
+problema 4434 161457 Pero se ha obtenido: 160662
+resultado: 160662 16
+resultado FB: problema 4434 161457
+------------------------------
+problema 4436 61726 Pero se ha obtenido: 59982
+resultado: 59982 13
+resultado FB: problema 4436 61726
+------------------------------
+problema 4444 206025 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 4444 206025
+------------------------------
+problema 4563 70730 Pero se ha obtenido: 0
+resultado: 0 14
+resultado FB: problema 4563 70730
+------------------------------
+problema 4639 33143 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 4639 33143
+------------------------------
+problema 4676 104334 Pero se ha obtenido: 99060
+resultado: 99060 18
+resultado FB: problema 4676 104334
+------------------------------
+problema 4749 131882 Pero se ha obtenido: 118302
+resultado: 118302 14
+resultado FB: problema 4749 131882
+------------------------------
+problema 4786 84411 Pero se ha obtenido: 0
+resultado: 0 5
+resultado FB: problema 4786 84411
+------------------------------
+problema 4839 195976 Pero se ha obtenido: 193840
+resultado: 193840 22
+resultado FB: problema 4839 195976
+------------------------------
+problema 4864 136800 Pero se ha obtenido: 132931
+resultado: 132931 29
+resultado FB: problema 4864 136800
+------------------------------
+problema 4891 89479 Pero se ha obtenido: 77497
+resultado: 77497 25
+resultado FB: problema 4891 89479
+------------------------------
+problema 4969 61722 Pero se ha obtenido: 61610
+resultado: 61610 8
+resultado FB: problema 4969 61722
+------------------------------
+problema 5015 80054 Pero se ha obtenido: 79483
+resultado: 79483 10
+resultado FB: problema 5015 80054
+------------------------------
+problema 5037 80670 Pero se ha obtenido: 0
+resultado: 0 6
+resultado FB: problema 5037 80670
+------------------------------
+problema 5049 108988 Pero se ha obtenido: 107362
+resultado: 107362 53
+resultado FB: problema 5049 108988
+------------------------------
+problema 5061 164380 Pero se ha obtenido: 157506
+resultado: 157506 112
+resultado FB: problema 5061 164380
+------------------------------
+problema 5088 78106 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 5088 78106
+------------------------------
+problema 5236 147838 Pero se ha obtenido: 127752
+resultado: 127752 6
+resultado FB: problema 5236 147838
+------------------------------
+problema 5248 40970 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 5248 40970
+------------------------------
+problema 5291 80578 Pero se ha obtenido: 0
+resultado: 0 19
+resultado FB: problema 5291 80578
+------------------------------
+problema 5374 33674 Pero se ha obtenido: 32862
+resultado: 32862 7
+resultado FB: problema 5374 33674
+------------------------------
+problema 5394 92475 Pero se ha obtenido: 91671
+resultado: 91671 14
+resultado FB: problema 5394 92475
+------------------------------
+problema 5462 64640 Pero se ha obtenido: 0
+resultado: 0 6
+resultado FB: problema 5462 64640
+------------------------------
+problema 5482 147979 Pero se ha obtenido: 120568
+resultado: 120568 7
+resultado FB: problema 5482 147979
+------------------------------
+problema 5512 123925 Pero se ha obtenido: 0
+resultado: 0 9
+resultado FB: problema 5512 123925
+------------------------------
+problema 5616 131532 Pero se ha obtenido: 128496
+resultado: 128496 47
+resultado FB: problema 5616 131532
+------------------------------
+problema 5626 107289 Pero se ha obtenido: 103042
+resultado: 103042 9
+resultado FB: problema 5626 107289
+------------------------------
+problema 5700 117463 Pero se ha obtenido: 112588
+resultado: 112588 5
+resultado FB: problema 5700 117463
+------------------------------
+problema 5738 87552 Pero se ha obtenido: 81316
+resultado: 81316 10
+resultado FB: problema 5738 87552
+------------------------------
+problema 5799 133584 Pero se ha obtenido: 127209
+resultado: 127209 39
+resultado FB: problema 5799 133584
+------------------------------
+problema 5800 125354 Pero se ha obtenido: 122972
+resultado: 122972 17
+resultado FB: problema 5800 125354
+------------------------------
+problema 5923 147406 Pero se ha obtenido: 0
+resultado: 0 82
+resultado FB: problema 5923 147406
+------------------------------
+problema 5924 142800 Pero se ha obtenido: 0
+resultado: 0 11
+resultado FB: problema 5924 142800
+------------------------------
+problema 5933 132622 Pero se ha obtenido: 129291
+resultado: 129291 28
+resultado FB: problema 5933 132622
+------------------------------
+problema 6002 106054 Pero se ha obtenido: 0
+resultado: 0 83
+resultado FB: problema 6002 106054
+------------------------------
+problema 6052 136701 Pero se ha obtenido: 136392
+resultado: 136392 21
+resultado FB: problema 6052 136701
+------------------------------
+problema 6121 84088 Pero se ha obtenido: 70096
+resultado: 70096 48
+resultado FB: problema 6121 84088
+------------------------------
+problema 6145 100096 Pero se ha obtenido: 94646
+resultado: 94646 28
+resultado FB: problema 6145 100096
+------------------------------
+problema 6249 74885 Pero se ha obtenido: 70649
+resultado: 70649 5
+resultado FB: problema 6249 74885
+------------------------------
+problema 6283 76626 Pero se ha obtenido: 68238
+resultado: 68238 16
+resultado FB: problema 6283 76626
+------------------------------
+problema 6329 141313 Pero se ha obtenido: 138308
+resultado: 138308 15
+resultado FB: problema 6329 141313
+------------------------------
+problema 6396 55560 Pero se ha obtenido: 44788
+resultado: 44788 6
+resultado FB: problema 6396 55560
+------------------------------
+problema 6493 130977 Pero se ha obtenido: 121945
+resultado: 121945 6
+resultado FB: problema 6493 130977
+------------------------------
+problema 6570 77898 Pero se ha obtenido: 68547
+resultado: 68547 12
+resultado FB: problema 6570 77898
+------------------------------
+problema 6585 86584 Pero se ha obtenido: 85118
+resultado: 85118 15
+resultado FB: problema 6585 86584
+------------------------------
+problema 6647 139836 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 6647 139836
+------------------------------
+problema 6655 162619 Pero se ha obtenido: 148203
+resultado: 148203 8
+resultado FB: problema 6655 162619
+------------------------------
+problema 6803 135446 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 6803 135446
+------------------------------
+problema 6809 35482 Pero se ha obtenido: 0
+resultado: 0 2
+resultado FB: problema 6809 35482
+------------------------------
+problema 6853 137869 Pero se ha obtenido: 131747
+resultado: 131747 37
+resultado FB: problema 6853 137869
+------------------------------
+problema 6883 90984 Pero se ha obtenido: 86727
+resultado: 86727 14
+resultado FB: problema 6883 90984
+------------------------------
+problema 6951 198459 Pero se ha obtenido: 198344
+resultado: 198344 10
+resultado FB: problema 6951 198459
+------------------------------
+problema 6991 138130 Pero se ha obtenido: 133558
+resultado: 133558 28
+resultado FB: problema 6991 138130
+------------------------------
+problema 7236 94774 Pero se ha obtenido: 92470
+resultado: 92470 11
+resultado FB: problema 7236 94774
+------------------------------
+problema 7293 115704 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 7293 115704
+------------------------------
+problema 7313 91159 Pero se ha obtenido: 0
+resultado: 0 7
+resultado FB: problema 7313 91159
+------------------------------
+problema 7338 139548 Pero se ha obtenido: 134950
+resultado: 134950 5
+resultado FB: problema 7338 139548
+------------------------------
+problema 7391 70927 Pero se ha obtenido: 47389
+resultado: 47389 20
+resultado FB: problema 7391 70927
+------------------------------
+problema 7424 83201 Pero se ha obtenido: 79389
+resultado: 79389 11
+resultado FB: problema 7424 83201
+------------------------------
+problema 7537 94159 Pero se ha obtenido: 90294
+resultado: 90294 20
+resultado FB: problema 7537 94159
+------------------------------
+problema 7562 81635 Pero se ha obtenido: 74053
+resultado: 74053 12
+resultado FB: problema 7562 81635
+------------------------------
+problema 7576 62178 Pero se ha obtenido: 57283
+resultado: 57283 17
+resultado FB: problema 7576 62178
+------------------------------
+problema 7614 53177 Pero se ha obtenido: 52753
+resultado: 52753 10
+resultado FB: problema 7614 53177
+------------------------------
+problema 7626 92318 Pero se ha obtenido: 89353
+resultado: 89353 53
+resultado FB: problema 7626 92318
+------------------------------
+problema 7699 51232 Pero se ha obtenido: 51166
+resultado: 51166 5
+resultado FB: problema 7699 51232
+------------------------------
+problema 7747 109498 Pero se ha obtenido: 0
+resultado: 0 4
+resultado FB: problema 7747 109498
+------------------------------
+problema 7750 40447 Pero se ha obtenido: 0
+resultado: 0 1
+resultado FB: problema 7750 40447
+------------------------------
+problema 7872 114531 Pero se ha obtenido: 113300
+resultado: 113300 94
+resultado FB: problema 7872 114531
+------------------------------
+problema 7873 108977 Pero se ha obtenido: 107433
+resultado: 107433 26
+resultado FB: problema 7873 108977
+------------------------------
+problema 7875 58476 Pero se ha obtenido: 48718
+resultado: 48718 19
+resultado FB: problema 7875 58476
+------------------------------
+problema 7900 96803 Pero se ha obtenido: 0
+resultado: 0 3
+resultado FB: problema 7900 96803
+------------------------------
+problema 7916 187188 Pero se ha obtenido: 163226
+resultado: 163226 4
+resultado FB: problema 7916 187188
+------------------------------
+problema 7946 129955 Pero se ha obtenido: 125585
+resultado: 125585 4
+resultado FB: problema 7946 129955
+------------------------------
+problema 7998 140514 Pero se ha obtenido: 139569
+resultado: 139569 14
+resultado FB: problema 7998 140514
+numProblemasMal : 179
