@@ -105,16 +105,28 @@ class Problema{
 				int maxPasajeros = replica[this->max(replica, pedidos[i].estacionIni(), pedidos[i].estacionFin())];
 				int nuevosPasajeros = pedidos[i].billetes();
 				int beneficio = pedidos[i].beneficioPedido();
-				if((this->maxCapacidad - maxPasajeros) < nuevosPasajeros){
-					nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
-					beneficio = nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni());
-				}if(nuevosPasajeros < 1){
-					continue;
-				}
-				coste = coste + beneficio;
+				//if((this->maxCapacidad - maxPasajeros) < nuevosPasajeros){
+				//	nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
+				//	beneficio = nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni());
+				//}if(nuevosPasajeros < 1){
+				//	continue;
+				//}
+				//coste = coste + beneficio;
+				//for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
+				//	replica[j] += nuevosPasajeros;
+				//}
 				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
-					replica[j] += nuevosPasajeros;
-				}
+					if(pedidos[i].billetes() > this->maxCapacidad - replica[j]){
+						nuevosPasajeros = this->maxCapacidad - replica[j];
+						replica[j] += nuevosPasajeros;
+						coste += nuevosPasajeros;
+					}else{
+						replica[j] += pedidos[i].billetes();
+						coste += pedidos[i].billetes();
+					}
+					
+					
+				}	
 			}
 			return 0 - coste;
 		}
