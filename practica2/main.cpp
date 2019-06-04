@@ -5,9 +5,9 @@
 #include <fstream>
 #include "clases/heap.hpp"
 #include "clases/pedido.hpp"
-#include "clases/problema.hpp"
+#include "clases/problema.1.hpp"
 using namespace std;
-
+#define debug
 /**
  * Devuelve true si y solo si no es hoja y hay que insertarlo en monticulo
  */ 
@@ -15,6 +15,10 @@ bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedi
 	bool insertar = false;
 	//double coste = p->costeEstimado(pedidos, numPedidos);
 	double coste = p->cEstim();
+	#ifdef debug
+		cout << " Coste: " << coste << ";  Cota: " << p->cota_mejor(pedidos, numPedidos);
+	#endif
+
 	if(U_min >= coste){
 		int cota = p->cota_mejor(pedidos, numPedidos);
 		if( cota == coste ||  p->siguientePedido() == numPedidos - 1){
@@ -22,14 +26,12 @@ bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedi
 			if((0-coste) > mBeneficio){
 				mBeneficio = (0 -coste);
 			}
+			if(cota < U_min){
+				U_min = cota;
+			}
 		}else{
 			insertar = true;
 		}
-		if(cota < U_min){
-			U_min = cota;
-		}
-	}else{
-		volatile int a = 1;
 	}
 	return insertar;
 }
@@ -41,18 +43,46 @@ int resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
 	while (!nodos.isEmpty()){
 		Problema *noCogido = nodos.pop();
 		Problema *cogido = noCogido->clone(pedidos, numPedidos); //clone incrementa en 1 el numPedido de noCogido
+		#ifdef debug
+			cout << "Cogiendo pedido " << cogido->siguientePedido()+1 << " ";
+
+		#endif
 		
 		if(cogido->anyadir(pedidos[noCogido->siguientePedido()], pedidos, numPedidos)){
+			#ifdef debug
+				cout << " Pedido VIABLE";
+			#endif
 			if(calculosCotaYCoste(mejorBenefico, U_min, cogido,numPedidos, pedidos)){
 				nodos.add(cogido);
+				#ifdef debug
+					cout << " Pedido se anyade" << endl;
+				#endif
+			}else{
+			#ifdef debug
+				cout << " Pedido NO se anyade\n";
+			#endif
+				delete cogido;
 			}
+			
 		}else{
+			#ifdef debug
+				cout << " Pedido NO viable" << endl;
+			#endif
 			delete cogido;
 		}
+		#ifdef debug
+		cout << "NO Cogiendo pedido " << noCogido->siguientePedido() << " ";
+		#endif
 		if(calculosCotaYCoste(mejorBenefico, U_min, noCogido,numPedidos, pedidos)){
 				nodos.add(noCogido);
+				#ifdef debug
+					cout << " Pedido se anyade" << endl;
+				#endif
 		}else{
 			delete noCogido;
+			#ifdef debug
+				cout << " Pedido NO viable" << endl;
+			#endif
 		}
 	}
 	return mejorBenefico;
@@ -99,7 +129,7 @@ int main(int argc, char *argv[]){
 				while (!fEnt.eof() && pedidosLeidos < numPedidos){
 					int estSalida, estLlegada, numPasajeros;
 					fEnt >> estSalida >> estLlegada >> numPasajeros;
-					std::cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
+					//std::cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
 					Pedido * p = new Pedido(numPasajeros, estSalida, estLlegada);
 					ordenacionInicial.add(p);
 					pedidosLeidos++;
@@ -111,19 +141,32 @@ int main(int argc, char *argv[]){
 					i++;
 				}
 				start = clock();
-				beneficioMax = resolverProblema(pedidos, frontera, numPedidos);
+				#ifdef debug
+				if(numProblemas == 3786){
+					volatile int a = 2;
+					beneficioMax = resolverProblema(pedidos, frontera, numPedidos);
+					fSal << beneficioMax << " " << numPedidos << " " << numEstacionFinal << "\n";
+					std::cout << "----------------------------------------\n" << beneficioMax << " "
+						 "\n" << "----------------------------------------\n";
+				}
+				#else
+					beneficioMax = resolverProblema(pedidos, frontera, numPedidos);
+				#endif
+				
 				end = clock();
 				int tiempo = (end - start);
-				fSal << beneficioMax << " " << tiempo << "\n";
+				#ifndef debug
+				fSal << beneficioMax << " " << tiempo << " " << numPedidos << " " << numEstacionFinal << "\n";
 				std::cout << "----------------------------------------\n" << beneficioMax << " "
-					 << tiempo << "\n" << "----------------------------------------\n";
+					 << tiempo <<  "\n" << "----------------------------------------\n";
 				//Leer otro bloque
+				#endif
 				numProblemas++;
-				if(numProblemas == 167){
-					volatile int a = 2;
-				}
+				
 				fEnt >> capMax >> numEstacionFinal >> numPedidos;
+				#ifndef debug
 				std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
+				#endif
 			}
 			fSal.close();
 		}else{
