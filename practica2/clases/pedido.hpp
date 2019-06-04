@@ -18,18 +18,37 @@ class Pedido{
         int beneficioPedido(){return beneficio;}
         double beneficioIndividual(){return (double)this->beneficio/this->numBilletes;}
         bool operator >=(Pedido& p) {
-			return (double)this->beneficio/this->numBilletes <= p.beneficioIndividual();
-		}
-		bool operator <=(Pedido& p) {
+            if(this->beneficio/this->numBilletes == p.beneficioIndividual()){
+                return numBilletes >= p.billetes();
+            }
 			return (double)this->beneficio/this->numBilletes >= p.beneficioIndividual();
 		}
+        
+		bool operator <=(Pedido& p) {
+            if(this->beneficio/this->numBilletes == p.beneficioIndividual()){
+                return numBilletes <= p.billetes();
+            }
+			return (double)this->beneficio/this->numBilletes <= p.beneficioIndividual();		
+            }
+
+
 		bool operator >(Pedido& p) {
-			return (double)this->beneficio/this->numBilletes < p.beneficioIndividual();
-		}
+            if(this->beneficio/this->numBilletes == p.beneficioIndividual()){
+                return numBilletes > p.billetes();
+            }
+			return (double)this->beneficio/this->numBilletes > p.beneficioIndividual();		
+            }
+
+
 
 		bool operator <(Pedido& p) {
-			return (double)this->beneficio/this->numBilletes > p.beneficioIndividual();
-		}		
+            if(this->beneficio/this->numBilletes == p.beneficioIndividual()){
+                return numBilletes < p.billetes();
+            }
+			return (double)this->beneficio/this->numBilletes < p.beneficioIndividual();		
+            }
+
+
         
 };
 

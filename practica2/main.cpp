@@ -15,19 +15,20 @@ bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedi
 	bool insertar = false;
 	//double coste = p->costeEstimado(pedidos, numPedidos);
 	double coste = p->cEstim();
-	if(U_min >= coste){
+	if(U_min < coste){
 		int cota = p->cota_mejor(pedidos, numPedidos);
 		if( cota == coste ||  p->siguientePedido() == numPedidos - 1){
 			/** HOJA*/
-			if((0-coste) > mBeneficio){
-				mBeneficio = (0 -coste);
+			if(coste > mBeneficio){
+				mBeneficio = coste;
+			}
+			if(cota > U_min){
+				U_min = cota;
 			}
 		}else{
 			insertar = true;
 		}
-		if(cota < U_min){
-			U_min = cota;
-		}
+
 	}else{
 		volatile int a = 1;
 	}
