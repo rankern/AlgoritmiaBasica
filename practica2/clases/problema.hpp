@@ -61,7 +61,40 @@ class Problema{
 			return indice;
 		}
 		double cEstim(){return this->costeEst;}
-	
+		/* void costeYcota(Pedido pedidos[], int numPedidos, double &cota, double &coste) {
+			cota = this->beneficioAcum;
+			coste = this->beneficioAcum;
+			int replicaCota[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
+			int replicaCoste[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
+			for(int i = this->pedidoActual; i < numPedidos; i++){
+				int maxCoste = replicaCoste[pedidos[i].estacionIni()];
+				int maxCota = replicaCota[pedidos[i].estacionIni()];
+				bool viableCota = true;
+				//Calcular tramo ocurrente con mayor num pasajeros
+				for(int j = pedidos[i].estacionIni()+1; j < pedidos[i].estacionFin(); j++){
+					if(replicaCoste[j] > maxCoste)
+						maxCoste = replicaCoste[j];
+					viableCota &= (this->maxCapacidad - replicaCota[j] <= pedidos[i].billetes());
+				}
+				int nuevosPasajeros = pedidos[i].billetes();
+				if(maxCoste < nuevosPasajeros){
+					int nuevosPasajeros =  this->maxCapacidad - maxCoste;
+					
+				}
+				coste = coste + (nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni()));
+				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
+					replicaCoste[j] += nuevosPasajeros;
+				}
+				if(viableCota){
+					cota += pedidos[i].beneficioPedido();
+					for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
+						replicaCota[j] += pedidos[i].billetes();
+					}
+				}
+			}
+			cota = 0 - cota;
+			coste = 0 - coste;
+		} */
 
 
 		double costeEstimado(Pedido pedidos[], int numPedidos){
@@ -71,37 +104,33 @@ class Problema{
 				int maxPasajeros = replica[this->max(replica, pedidos[i].estacionIni(), pedidos[i].estacionFin())];
 				int nuevosPasajeros = pedidos[i].billetes();
 				int beneficio = pedidos[i].beneficioPedido();
-				if((this->maxCapacidad - maxPasajeros) < nuevosPasajeros){
-					nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
-					beneficio = nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni());
-					coste = coste + beneficio;
-					break;
-				}if(nuevosPasajeros < 1){
-					continue;
-				}
-				coste = coste + beneficio;
-				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
-					replica[j] += nuevosPasajeros;
-				}
+				//if((this->maxCapacidad - maxPasajeros) < nuevosPasajeros){
+				//	nuevosPasajeros =  this->maxCapacidad - maxPasajeros;
+				//	beneficio = nuevosPasajeros * (pedidos[i].estacionFin() - pedidos[i].estacionIni());
+				//}if(nuevosPasajeros < 1){
+				//	continue;
+				//}
+				//coste = coste + beneficio;
 				//for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
-				//	if(pedidos[i].billetes() > this->maxCapacidad - replica[j]){
-				//		nuevosPasajeros = this->maxCapacidad - replica[j];
-				//		replica[j] += nuevosPasajeros;
-				//		coste += nuevosPasajeros;
-				//	}else{
-				//		replica[j] += pedidos[i].billetes();
-				//		coste += pedidos[i].billetes();
-				//	}
-				//	
-				//	
-				//}	
+				//	replica[j] += nuevosPasajeros;
+				//}
+				for(int j = pedidos[i].estacionIni(); j < pedidos[i].estacionFin(); j++){
+					if(pedidos[i].billetes() > this->maxCapacidad - replica[j]){
+						nuevosPasajeros = this->maxCapacidad - replica[j];
+						replica[j] += nuevosPasajeros;
+						coste += nuevosPasajeros;
+					}else{
+						replica[j] += pedidos[i].billetes();
+						coste += pedidos[i].billetes();
+					}
+					
+					
+				}	
 			}
-			//return 0 - coste;
 			return coste;
 		}
 
 		int cota_mejor(Pedido pedidos[], int numPedidos){
-			return beneficioAcum;
 			int cota = this->beneficioAcum;
 			int replica[7] = {this->tramos[0],this->tramos[1],this->tramos[2],this->tramos[3],this->tramos[4],this->tramos[5],this->tramos[6] };
 			for(int i = this->pedidoActual + 1; i < numPedidos; i++){
