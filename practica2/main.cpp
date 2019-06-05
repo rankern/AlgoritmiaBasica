@@ -81,7 +81,7 @@ int main(int argc, char *argv[]){
 		if (fSal.is_open()){
 
 			fEnt >> capMax >> numEstacionFinal >> numPedidos;
-			std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
+			//std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			while (!fEnt.eof()){
 				if (capMax == 0 && numEstacionFinal == 0 && numPedidos == 0){
 					break;
@@ -99,7 +99,7 @@ int main(int argc, char *argv[]){
 				while (!fEnt.eof() && pedidosLeidos < numPedidos){
 					int estSalida, estLlegada, numPasajeros;
 					fEnt >> estSalida >> estLlegada >> numPasajeros;
-					std::cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
+					//std::cout << " " << estSalida << " "  << estLlegada << " " << numPasajeros << endl;
 					Pedido * p = new Pedido(numPasajeros, estSalida, estLlegada);
 					ordenacionInicial.add(p);
 					pedidosLeidos++;
@@ -113,17 +113,17 @@ int main(int argc, char *argv[]){
 				start = clock();
 				beneficioMax = resolverProblema(pedidos, frontera, numPedidos);
 				end = clock();
-				int tiempo = (end - start);
+				int tiempo = (end - start)/CLOCKS_PER_SEC;
 				fSal << beneficioMax << " " << tiempo << "\n";
-				std::cout << "----------------------------------------\n" << beneficioMax << " "
-					 << tiempo << "\n" << "----------------------------------------\n";
+				//std::cout << "----------------------------------------\n" << beneficioMax << " "
+				//	 << tiempo << "\n" << "----------------------------------------\n";
 				//Leer otro bloque
 				numProblemas++;
 				if(numProblemas == 167){
 					volatile int a = 2;
 				}
 				fEnt >> capMax >> numEstacionFinal >> numPedidos;
-				std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
+				//std::cout << capMax << " " << numEstacionFinal << " " << numPedidos << endl;
 			}
 			fSal.close();
 		}else{
