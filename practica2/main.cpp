@@ -11,24 +11,23 @@ using namespace std;
 /**
  * Devuelve true si y solo si no es hoja y hay que insertarlo en monticulo
  */ 
-bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedidos, Pedido pedidos[]){
+bool calculosCotaYCoste(int &mBeneficio, double &U_max, Problema *p, int numPedidos, Pedido pedidos[]){
 	bool insertar = false;
 	//double coste = p->costeEstimado(pedidos, numPedidos);
 	double coste = p->cEstim();
-	if(U_min < coste){
-		int cota = p->cota_mejor(pedidos, numPedidos);
+	if(U_max <= coste){
+		int cota =mBeneficio;
 		if( cota == coste ||  p->siguientePedido() == numPedidos - 1){
 			/** HOJA*/
 			if(coste > mBeneficio){
 				mBeneficio = coste;
 			}
-			if(cota > U_min){
-				U_min = cota;
-			}
 		}else{
 			insertar = true;
 		}
-
+		if(cota > U_max){
+			U_max = cota;
+		}
 	}else{
 		volatile int a = 1;
 	}
@@ -37,26 +36,26 @@ bool calculosCotaYCoste(int &mBeneficio, double &U_min, Problema *p, int numPedi
 
 
 int resolverProblema(Pedido pedidos[], Heap<Problema> &nodos, int numPedidos){
-	double U_min = 0;
-	int mejorBenefico = 0;
+	double U_max = 0;
+	int beneficio = 0;
 	while (!nodos.isEmpty()){
 		Problema *noCogido = nodos.pop();
 		Problema *cogido = noCogido->clone(pedidos, numPedidos); //clone incrementa en 1 el numPedido de noCogido
 		
 		if(cogido->anyadir(pedidos[noCogido->siguientePedido()], pedidos, numPedidos)){
-			if(calculosCotaYCoste(mejorBenefico, U_min, cogido,numPedidos, pedidos)){
+			if(calculosCotaYCoste(beneficio, U_max, cogido,numPedidos, pedidos)){
 				nodos.add(cogido);
 			}
 		}else{
 			delete cogido;
 		}
-		if(calculosCotaYCoste(mejorBenefico, U_min, noCogido,numPedidos, pedidos)){
+		if(calculosCotaYCoste(beneficio, U_max, noCogido,numPedidos, pedidos)){
 				nodos.add(noCogido);
 		}else{
 			delete noCogido;
 		}
 	}
-	return mejorBenefico;
+	return beneficio;
 }
 
 int main(int argc, char *argv[]){
