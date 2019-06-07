@@ -70,6 +70,14 @@ int comprimir(string nombreFichero){
 	while (mont.tamanyo() > 1){
 		Trie<char> * h = mont.pop();
 		Trie<char> * x = mont.pop();
+		if(verbose){
+			if(h->getIzq() == nullptr){
+				cout <<"F: " << h->getFrecuencia() << endl;
+			}
+			if(x->getIzq() == nullptr){
+				cout << "F: " << x->getFrecuencia() << endl;
+			}
+		}
 		Trie<char> * tr = new Trie<char>(h, x);
 		mont.add(tr);
 	}
