@@ -10,9 +10,9 @@ for f in $(ls ./)
 do
     echo "Comprimiendo fichero $(ls -lh $f)"
     cp "$f" "copia.pr"
-    time ../huf -c copia.pr
+    time ../huf -c copia.pr v
     echo "Descomprimiendo"
-    time ../huf -c copia.pr
+    time ../huf -d copia.pr
     echo "comparando"
     diff copia.pr "$f"
     echo "--------------------------------"
