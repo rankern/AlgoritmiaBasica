@@ -25,10 +25,10 @@
 function [retval] = generarNormal ()
 
 a = ['../ficherosPrueba/prueba1.pr';'../ficherosPrueba/prueba2.pr'; '../ficherosPrueba/prueba3.pr'; '../ficherosPrueba/prueba4.pr';'../ficherosPrueba/prueba5.pr';'../ficherosPrueba/prueba6.pr';'../ficherosPrueba/prueba7.pr';'../ficherosPrueba/prueba8.pr';'../ficherosPrueba/prueba9.pr'];
-
+b = [1000, 1000,  1500,2000, 2500, 2500, 5000, 10000, 10000]
 for i = 1:9
   f = fopen (a(i,:), "w+");
-  ale = randn(1, 256) .^2 * 10000;
+  ale = randn(1, 256) .^2 * b(i);
   total = 0
   for j = 1:256
    escribir(1,1:ale(j)) = j-1;
