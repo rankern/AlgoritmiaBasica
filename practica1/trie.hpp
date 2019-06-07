@@ -1,10 +1,12 @@
-/**
- * @autor: Victor M. Lafuente
- * @autor: Jose M. Romero
- * @fecha: 06-03-2019
- * @ultima Modificacion: 6-03-2019
- */ 
 
+/* 
+ * ALgoritmia Básica: 2018/2019
+ * Practica1: Codigo Huffman
+ * Autores: Victor M. Lafuente, José Manuel Romero
+ * Nias: 		747325, 			740914
+ * 
+ * Contenido: Clase Trie, árbol de tipo Lexicográfico para codigo Huffman
+ */
 
 #pragma once
 
@@ -15,13 +17,14 @@ using namespace std;
 template <typename T>
 class Trie{
 	private:
-		Trie * izq = nullptr;
-		Trie * dch = nullptr;
-		T elemento;
-		int frecuencia = 0;
-		string codificacion = "";
+		Trie * izq = nullptr; //Hijo izquierdo del árbol
+		Trie * dch = nullptr; //Hijo derecho del árbol
+		T elemento;	//Simbolo a codificar (sólo si this es hoja)
+		int frecuencia = 0;	//Numero de frecuencias
+		string codificacion = ""; //equivalencia de codificacion
 	
 	public:
+		//Constructores
 		Trie<T>(){}
 		Trie<T>(T t) : elemento (t) { }
 		Trie<T>(T t, int _frec) : elemento (t), frecuencia(_frec) { }
@@ -29,7 +32,7 @@ class Trie{
 			this->frecuencia = _izq->getFrecuencia() + _dch->getFrecuencia();
 		 }
 		Trie<T>(Trie * _izq) : izq(_izq){ }
-		
+		//Geters
 		Trie<T> * getIzq(){
 			return this->izq;
 		}
@@ -44,7 +47,7 @@ class Trie{
 		int getFrecuencia() {
 			return this->frecuencia;
 		}
-
+		//añade la condificación equivalente al nodo
 		void setCode(string c){
 			this->codificacion = c;
 		}
@@ -75,15 +78,16 @@ class Trie{
 			return t->getElement;
 		}
 
-
+	
 		friend class const_iterator;
 	   
-		
+		//Iterador de la clase. Se emplea para codificar los nodos
 		class const_iterator {
 		private:
 			stack<Trie *> p;
 			Trie<T>* trie;
 		public:
+			//Inicializa iterador en hoja más a la izquierda. Habra ido generando codigos Huffman e insertandolos en cada nodo recorrido
 			const_iterator(Trie* t_) : trie(t_) {
 				string c = "";
 				c += "0";
@@ -103,8 +107,8 @@ class Trie{
 			
 			
 		
-			//Este método redefine el operador de pre-incremento (++x).
-			//Representa el avance del iterador.
+			//redefine el operador de pre-incremento (++x) necesario para el avance del iterador.
+			//Recorre el árbol en in-Orden, generando e insertando codigos Huffman, hasta siguiente hoja
 			const_iterator& operator++(){ 
 				if(p.empty()){
 					this->trie = nullptr;
@@ -136,20 +140,14 @@ class Trie{
 				return (*this);
 				
 			}
-			//Este método redefine el operador de "apuntado" (*x)
-			//Representa la obtención de lo apuntado por el iterador.
+
 			Trie * operator*()   const 
 			{
 				return this->trie;
-				//TODO: Rellena este método para que devuelva el elemento T al que está apuntando el iterador.	
 			} 
 
 
-		//	En la definición por defecto de los iteradores, no existe la comprobación de si existe
-		//	siguiente elemento. Por defecto las estructuras de datos devuelven iteradores al principio y al final,
-		//	y para recorrer la estructura se compara el iterador que avanza con el iterador que apunta al final
-		//	de la estructura.
-		//
+
 			bool operator!=(const const_iterator& that) const 
 			{ 
 				return this->trie != that.trie;
@@ -157,11 +155,7 @@ class Trie{
 
 		};
 
-		//Observa como nuestra agrupacion permite generar dos iteradores: uno al principio y otro al final.
-		//El iterador que apunta al final de la agrupación se mantiene en este caso únicamente para hacer
-		//la comprobación de que "existe siguiente".
-		//Date cuenta que los valores que le pasamos como índice del iterador son para que se recorra la
-		//estructura desde el último elemento (this->total - 1) hasta el primero (0).
+
 		const_iterator begin() { return const_iterator(this); }
 		const_iterator end()   { return const_iterator(this, 1); }
 };

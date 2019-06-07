@@ -1,9 +1,12 @@
-/**
- * @autor: Victor M. Lafuente
- * @autor: Jose M. Romero
- * @fecha: 06-03-2019
- * @ultima Modificacion: 13-03-2019
- */ 
+
+/* 
+ * ALgoritmia Básica: 2018/2019
+ * Practica1: Codigo Huffman
+ * Autores: Victor M. Lafuente, José Manuel Romero
+ * Nias: 		747325, 			740914
+ * 
+ * Contenido: Clase Heap (Monticulo). Cola con prioridad de menor a mayor
+ */
 
 #pragma once
 #include <iostream>
@@ -18,9 +21,11 @@ class Heap{
 
 	public:
 		Heap() : tam (0){}
-
+		//getters
 		bool isEmpty(){ return this->tam == 0; }
 		int tamanyo() {return this->tam;}
+		
+		//Añade elemento 'e' en el vector, siguiendo el algoritmo del monticulo
 		void add(T * e){
 			this->elementos[this->tam] = e;
 			for (int i = this->tam++; i > 0 && *this->elementos[i] < *this->elementos[(i-1)/2]; i = (i-1)/2){
@@ -30,16 +35,8 @@ class Heap{
 			}
 		}
 
-
+		//Duelve el primer elemento del monticulo y lo elimina del mismo, siguiendo el algoritmo del monticulo
 		T * pop(){
-			/*for (int i = 0; i< this->tam; i++){
-				if(this->elementos[i]->getIzq() == nullptr){
-					printf("(%c, %d)", this->elementos[i]->getElement(), this->elementos[i]->getFrecuencia());
-				}else{
-					printf("(N, %d)", this->elementos[i]->getFrecuencia());
-				}
-			}
-			cout << endl;*/
 			T * ret = this->elementos[0];
 			this->tam--;
 			this->elementos[0] = this->elementos[this->tam];

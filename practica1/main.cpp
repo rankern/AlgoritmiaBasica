@@ -1,3 +1,14 @@
+
+/* 
+ * ALgoritmia Básica: 2018/2019
+ * Practica1: Codigo Huffman
+ * Autores: Victor M. Lafuente, José Manuel Romero
+ * Nias: 		747325, 			740914
+ * 
+ * Contenido: Main del algoritmo necesario para Codificar/Decodificar
+ */
+
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <iostream>
@@ -14,6 +25,15 @@ using namespace std;
 enum{NUM_SIMBOLOS = 256};
 bool verbose = false;
 
+/*
+ * PRE: 
+ *	t = un árbol lexicográfico binario.
+ * 	u = byte para decodificar
+ * 	desde = posición de siguiente bit 'u' para descodificar
+ * POST:
+ * 	Devuelve el último bit (entre 0 a 7) empleado para descodificar u 8 si no se aún no se ha encontrado símbolo equivalente
+ * 	t apuntará al último nodo del árbol visitado.
+ */
 int decod(Trie<char> *& t , char u, int desde){
 	unsigned char mask = 0x80;
 	mask = (mask >> desde);
@@ -31,8 +51,17 @@ int decod(Trie<char> *& t , char u, int desde){
 	return 8;
 }
 
-
+/* 
+ * PRE:
+ * nombreFichero es el path completo o relativo de fichero existente 
+ * 
+ * POST:
+ *  habra genererado un fichero con nombre "<nombreFichero>.huf" 
+ * 	cuyo contenido sera el equivalente al original tras la compresión 
+ * 	mediante el código Huffman
+*/
 int comprimir(string nombreFichero){
+	//Inicializacion variables
 	ifstream f;
 	Heap<Trie<char>> mont;
 	char byteLeido[1];
@@ -41,8 +70,8 @@ int comprimir(string nombreFichero){
 	for (int i = 0; i< NUM_SIMBOLOS; i++){
 		frecuencias[i] = 0;
 	}
-	//lectura fichero
 
+	//lectura fichero y contabilizacion de ocurrencias
 	f.open(nombreFichero,ios::binary);
 	if(f.is_open()){
 		f.read(byteLeido,1);
@@ -54,11 +83,12 @@ int comprimir(string nombreFichero){
 		}
 	}
 	f.close();
+
+	//Inicialización de monticulo
 	int leidos = 0;
 	for(int it = 0; it < NUM_SIMBOLOS; it++){
 		if(frecuencias[it]>0){
-			if(verbose)
-				leidos++;
+			leidos++;
 			Trie<char> * tr = new Trie<char>((char) it, frecuencias[it]);
 			mont.add(tr);
 		}
@@ -66,7 +96,7 @@ int comprimir(string nombreFichero){
 	if(verbose)
 		cout << "Cantidad de bytes distintos leidos = " << leidos << endl;
 
-	//generar trie
+	//generar trie de código Huffman
 	while (mont.tamanyo() > 1){
 		Trie<char> * h = mont.pop();
 		Trie<char> * x = mont.pop();
@@ -74,14 +104,15 @@ int comprimir(string nombreFichero){
 		mont.add(tr);
 	}
 
-	//generar vector equivalencias
+	//generar vector equivalencias (LUT)
 	Trie<char> * trieCompleto = mont.pop();
 	string equivalencias[NUM_SIMBOLOS];
 	for(Trie<char> * t : *trieCompleto){
 		unsigned int elem = t->getElement();
 		equivalencias[elem%NUM_SIMBOLOS] = t->getCode();
 	}
-	//Volver a leer fichero y codificar
+
+	//Volver a leer fichero y escribir codificado
 	f.open(nombreFichero,ios::binary);
 	Escritura e(nombreFichero + ".huf");
 	e.escribirFrecuencias(frecuencias);
@@ -100,18 +131,29 @@ int comprimir(string nombreFichero){
 	return 0;
 }
 
+/* 
+ * PRE:
+ * 	<nombreFichero>.huf es el path completo o relativo de un fichero existente
+ * 		y comprimido mediante este algoritmo
+ * 
+ * POST:
+ *  habra genererado un fichero con nombre "<nombreFichero>" 
+ * 	cuyo contenido sera el equivalente al original antes de la compresión
+*/
 int descomprimir(string nombreFichero){
-	//lectura de equivalencias (arbol, vector, ....)
+
+	//inicializacion variables
 	ifstream f;
 	ofstream o;
 	char byteLeido[1];
 	int tam, simbolos, frecuencia, simbolo;
 	char kk;
 	Heap<Trie<char>> mont;
+
+	//lectura de equivalencias (vector)
 	f.open(nombreFichero + ".huf",ios::binary);
 	if(!f.is_open()){ return 1;}   
 	f >> tam >> simbolos;
-
 	while(!f.eof() && simbolos > 0){
 		f >> kk >> simbolo >> kk >> frecuencia >> kk;
 		Trie<char> * tr = new Trie<char>((char) simbolo, frecuencia);
@@ -119,7 +161,7 @@ int descomprimir(string nombreFichero){
 		simbolos--;
 	}
 
-	//generar trie
+	//generar trie codigo Huffman
 	while (mont.tamanyo() > 1){
 		Trie<char> * h = mont.pop();
 		Trie<char> * x = mont.pop();
@@ -128,20 +170,24 @@ int descomprimir(string nombreFichero){
 	}
 	Trie<char> * trieCompleto = mont.pop();
 
-	Trie <char> * pos = trieCompleto;
-	f.read(byteLeido,1);
-	f.read(byteLeido,1);
+	Trie <char> * pos = trieCompleto; //Puntero a nodo actual
+	f.read(byteLeido,1); // \n
+	f.read(byteLeido,1); // primer byte a decodificar
 	o.open(nombreFichero, ios::binary);
 	if(!o.is_open()){ return 1;}
-	int reconocidoEn = 0;
+
+	int reconocidoEn = 0;	//Si 0 <= reconocidoEn < 8 -> pos = simbolo de últimos bits leídos, caso contrario es un nodo intermedio
 	char printy[1];
+	//Decodificación
 	while(!f.eof() && tam > 0){
 		if((reconocidoEn = decod(pos, byteLeido[0], reconocidoEn)) < 8){
+			//Se ha reconocido simbolo válido
 			printy[0] = pos->getElement();
 			o.write(printy, 1);
 			pos = trieCompleto;
 			tam--;
 		}else{
+			//No se ha encontrado aún simbolo equivalente. leer siguiente byte
 			f.read(byteLeido,1);
 			reconocidoEn = 0;
 		}
@@ -161,7 +207,6 @@ int main(int argc, char ** argv){
 	string param2(argv[2]);
 	verbose = (argc == 4);
 	if (param1 == "-c"){
-		//aragv == -c
 		paramComprimir = true;
 	}else if(param1 != "-d"){
 		//error en paraemtro
@@ -169,9 +214,6 @@ int main(int argc, char ** argv){
 		return 1;
 	}
 	
-	//inicializar vector frecuencias
-	//Abrir fichero
-	//verificar fichero correctamente abierto
 	if(paramComprimir){
 		return comprimir(param2);
 	}else{
