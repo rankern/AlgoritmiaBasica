@@ -11,6 +11,7 @@ do
     echo "Comprimiendo fichero $(ls -lh $f)"
     cp "$f" "copia.pr"
     time ../huf -c copia.pr v
+    echo "Resultado compresion $(ls -lh copia.pr.huf)"
     echo "Descomprimiendo"
     time ../huf -d copia.pr
     echo "Comparando"
