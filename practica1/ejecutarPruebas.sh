@@ -13,8 +13,12 @@ do
     time ../huf -c copia.pr v
     echo "Descomprimiendo"
     time ../huf -d copia.pr
-    echo "comparando"
+    echo "Comparando"
     diff copia.pr "$f"
+    if [ $? -eq 0 ]
+    then
+        echo "Descompresion correcta"
+    fi
     echo "--------------------------------"
     
 done
